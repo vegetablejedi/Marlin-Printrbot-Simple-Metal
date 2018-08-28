@@ -83,7 +83,7 @@ LIQUID_TWI2        ?= 0
 WIRE               ?= 0
 
 # this defines if U8GLIB is needed (may require RELOC_WORKAROUND)
-U8GLIB             ?= 1
+U8GLIB             ?= 0
 
 # this defines whether to add a workaround for the avr-gcc relocation bug
 #	  https://www.stix.id.au/wiki/AVR_relocation_truncations_workaround
@@ -516,7 +516,7 @@ CDEFS    = -DF_CPU=$(F_CPU) ${addprefix -D , $(DEFINES)}
 CXXDEFS  = $(CDEFS)
 
 ifeq ($(HARDWARE_VARIANT), Teensy)
-CDEFS  += -DUSB_SERIAL
+CDEFS  += -DUSB_SERIAL -DUSBCON=1286
 SRC    += usb.c pins_teensy.c
 CXXSRC += usb_api.cpp
 endif
